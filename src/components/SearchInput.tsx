@@ -9,7 +9,8 @@ export default function SearchInput() {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    navigate(`/search?term=${term}`);
+    navigate(`/search?term=${term}`);  //navigate to search page with term in the address
+    //which can be used with get method to do other things
   };
 
   return (
@@ -28,3 +29,11 @@ export default function SearchInput() {
     </form>
   );
 }
+
+
+//we could also sumbit the form (here the what we type in the search bar) like this, it is much easier way of doing things
+// return(
+//     <Form action="/search">
+//         <input name="term" />
+//     </Form>
+// )
