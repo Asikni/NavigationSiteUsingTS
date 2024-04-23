@@ -1,6 +1,15 @@
+import type { PackageSummary } from "../../api/types/packageSummary";
 import { searchPackages } from "../../api/queries/searchPackages";
 
-export async function searchLoader({ request }: { request: Request }) {
+export interface SearchLoaderResult {
+  searchResults: PackageSummary[];
+}
+
+export async function searchLoader({
+  request,
+}: {
+  request: Request;
+}): Promise<SearchLoaderResult> {
   const { searchParams } = new URL(request.url);
   const term = searchParams.get("term");
 
@@ -9,7 +18,6 @@ export async function searchLoader({ request }: { request: Request }) {
   }
 
   const results = await searchPackages(term);
-
   return {
     searchResults: results,  //this is if we have more than one loader request that is returning something that is other than results
     //so we return as objects.
